@@ -108,16 +108,20 @@ Every module passes a five-layer, near-zero-cost review gate before it's "done":
 
 ---
 
-## Publishing to GitHub (your copy → shareable course)
-
-This folder is a ready-to-publish repo. When you want to share it:
+## Quick start
 
 ```bash
-git init
-git add .
-git commit -m "AI Concepts hands-on course"
-gh repo create ai-concepts-hands-on-learning --public --source=. --push
+git clone https://github.com/ravitej-sriram/ai-concepts-hands-on-learning.git
+cd ai-concepts-hands-on-learning
+
+# one-time setup (Python env, API key, optional Ollama) — see SETUP.md
+cp .env.example .env          # then add your Anthropic API key
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+
+# run your first lesson
+python modules/00-setup-and-mental-model/hello_llm.py
 ```
 
-Your `.env` (with your key) is git-ignored, so it stays private. Others just copy
-`.env.example`, add their own key, and follow `SETUP.md`.
+Your `.env` (with your key) is git-ignored, so it stays private. Full details —
+including the optional free local-model path via Ollama — are in **[SETUP.md](SETUP.md)**.
