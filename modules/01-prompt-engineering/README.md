@@ -136,8 +136,8 @@ makes this robust instead of crash-prone.
 ## Recap
 
 - The prompt is the program: be specific → system prompt → few-shot → chain-of-thought.
-- Structured output (JSON via the **prefill** trick) turns an LLM into a callable
-  component, which everything later relies on.
+- Structured output (JSON via **ask clearly + parse defensively**) turns an LLM
+  into a callable component, which everything later relies on.
 
 ## Go deeper (one link)
 

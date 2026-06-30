@@ -82,13 +82,15 @@ Module 00 · Your first LLM call
 [3/3] Temperature demo — same prompt, three calls:
    Prompt: Write one sentence describing what it feels like to touch a cloud.
 
-   temp=0  (run 1) →  Touching a cloud would feel like walking through a cool,
-                       damp mist — so soft and weightless that you can barely
-                       sense it against your skin.
-   temp=0  (run 2) →  (identical every time — try it)
+   temp=0  (run 1) →  Touching a cloud would feel like cool, damp mist —
+                       so soft you can barely sense it against your skin.
+   temp=0  (run 2) →  Touching a cloud would feel like cool, damp mist —
+                       so soft you can barely sense it against your skin.  ← same
 
-   temp=1  (call 1) →  Touching a cloud would feel like... (a different ending)
-   temp=1  (call 2) →  Touching a cloud would feel like... (yet another ending)
+   temp=1  (call 1) →  Touching a cloud might feel like brushing cool silk
+                       that melts the instant you reach for it.
+   temp=1  (call 2) →  Touching a cloud would feel like sinking your hand
+                       into chilled smoke — there, then gone.
 
    temp=0 locks onto one answer. temp=1 samples a different one each time.
 

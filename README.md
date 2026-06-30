@@ -4,6 +4,11 @@ A self-paced, **build-it-yourself** course for the core concepts behind modern A
 applications: prompting, RAG, agents, MCP, fine-tuning, evals, multimodal, and
 personal-AI systems like the Karpathy "second brain" and self-improvement loop.
 
+> **Status:** 8 of a planned 23 modules are built and tested today — the
+> foundations (00–03) and RAG (04–07). Agents, fine-tuning, evals, multimodal,
+> and the capstones are on the roadmap below, marked 🔜. New modules are added as
+> they're written and pass the [checks](#how-modules-are-checked).
+
 The goal isn't to use AI to write ordinary code — it's to **build applications
 that leverage what AI uniquely enables**. Every module is a short Markdown
 explainer plus small Python scripts you actually run.
@@ -27,55 +32,58 @@ helpers in [`shared/llm.py`](shared/llm.py) wrap both so lessons stay short.
 
 ---
 
-## The path (23 modules · 6 tracks)
+## The path (8 of 23 modules built · 7 tracks planned)
+
+Tracks 0–1 are built and tested; Tracks 2–6 are planned. Status per module:
+✅ = built, runs, and passes the smoke + rubric checks below · 🔜 = planned, not yet written.
 
 ⏱️ = longer than an hour · ✚ = optional/advanced (skip on a first pass)
 
 ### Track 0 — Foundations
-- **00 · [Setup & your first LLM call](modules/00-setup-and-mental-model/)** — mental model: tokens, context window, temperature
-- **01 · [Prompt engineering & structured outputs](modules/01-prompt-engineering/)** — system prompts, few-shot, chain-of-thought, reliable JSON
-- **02 · [Reasoning, extended thinking & test-time compute](modules/02-reasoning-and-test-time-compute/)**
-- **03 · [Tool use / function calling](modules/03-tool-use/)** — the foundation of agents
+- ✅ **00 · [Setup & your first LLM call](modules/00-setup-and-mental-model/)** — mental model: tokens, context window, temperature
+- ✅ **01 · [Prompt engineering & structured outputs](modules/01-prompt-engineering/)** — system prompts, few-shot, chain-of-thought, reliable JSON
+- ✅ **02 · [Reasoning, extended thinking & test-time compute](modules/02-reasoning-and-test-time-compute/)**
+- ✅ **03 · [Tool use / function calling](modules/03-tool-use/)** — the foundation of agents
 
 ### Track 1 — Giving the model knowledge (RAG)
-- **04 · [Embeddings & semantic search](modules/04-embeddings-and-semantic-search/)**
-- **05 · [RAG from scratch](modules/05-rag-from-scratch/)**
-- **06 · [Advanced RAG](modules/06-advanced-rag/)** ⏱️ — hybrid search, re-ranking, measuring retrieval
-- **07 · [Context engineering & memory](modules/07-context-engineering-and-memory/)**
+- ✅ **04 · [Embeddings & semantic search](modules/04-embeddings-and-semantic-search/)**
+- ✅ **05 · [RAG from scratch](modules/05-rag-from-scratch/)**
+- ✅ **06 · [Advanced RAG](modules/06-advanced-rag/)** ⏱️ — hybrid search, re-ranking, measuring retrieval
+- ✅ **07 · [Context engineering & memory](modules/07-context-engineering-and-memory/)**
 
 ### Track 2 — Agents
-- **08 · Workflows vs. agents + the agent loop (ReAct)**
-- **09 · MCP (Model Context Protocol)**
-- **10 · Multi-agent & reflection** ⏱️
-- **11 · Computer use / browser automation** ✚
+- 🔜 **08 · Workflows vs. agents + the agent loop (ReAct)**
+- 🔜 **09 · MCP (Model Context Protocol)**
+- 🔜 **10 · Multi-agent & reflection** ⏱️
+- 🔜 **11 · Computer use / browser automation** ✚
 
 ### Track 3 — Customizing models & data
-- **12 · Fine-tuning concepts** (PEFT, LoRA, QLoRA, RLHF/DPO overview)
-- **13 · Hands-on LoRA fine-tune** ⏱️
-- **14 · Synthetic data generation**
+- 🔜 **12 · Fine-tuning concepts** (PEFT, LoRA, QLoRA, RLHF/DPO overview)
+- 🔜 **13 · Hands-on LoRA fine-tune** ⏱️
+- 🔜 **14 · Synthetic data generation**
 
 ### Track 4 — Beyond text
-- **15 · Multimodal AI: vision & audio**
+- 🔜 **15 · Multimodal AI: vision & audio**
 
 ### Track 5 — Quality, safety & cost
-- **16 · Evals** (test sets, LLM-as-judge)
-- **17 · Guardrails & safety** (incl. prompt-injection defense)
-- **18 · Model selection & routing** (build vs. buy, cost/latency)
-- **19 · Observability, cost & latency**
+- 🔜 **16 · Evals** (test sets, LLM-as-judge)
+- 🔜 **17 · Guardrails & safety** (incl. prompt-injection defense)
+- 🔜 **18 · Model selection & routing** (build vs. buy, cost/latency)
+- 🔜 **19 · Observability, cost & latency**
 
 ### Track 6 — Personal AI systems (capstones)
-- **20 · Second brain / LLM wiki** (the Karpathy method)
-- **21 · The Karpathy self-improvement loop**
-- **22 · Capstone: RAG + agent + evals in one app** ⏱️
+- 🔜 **20 · Second brain / LLM wiki** (the Karpathy method)
+- 🔜 **21 · The Karpathy self-improvement loop**
+- 🔜 **22 · Capstone: RAG + agent + evals in one app** ⏱️
 
-See **[PROGRESS.md](PROGRESS.md)** for which modules are built so far.
+See **[PROGRESS.md](PROGRESS.md)** for the detailed per-module checklist (authored / smoke / rubric / reviewed).
 
 ---
 
 ## Anchor map — where to go deeper
 
-We don't reinvent pedagogy. Each module points to a best-in-class existing
-resource for the deep dive; our value-add is the *hands-on glue you run yourself*.
+We don't reinvent pedagogy. Each module points to one established external
+resource for the deep dive; what's here is the *hands-on glue you run yourself*.
 
 | Topic | Canonical resource |
 |---|---|
@@ -87,12 +95,15 @@ resource for the deep dive; our value-add is the *hands-on glue you run yourself
 
 ---
 
-## Quality: how we keep modules trustworthy
+## How modules are checked
 
-Every module passes a five-layer, near-zero-cost review gate before it's "done":
+The QA gate has five layers. Two run today on all 8 built modules; three are
+designed but not yet run (tracked per module in [PROGRESS.md](PROGRESS.md)).
+
+**Running now — every built module passes:**
 
 1. **Deterministic smoke test** — `python tools/smoke_test.py` runs every script
-   and checks it works (ground truth, not an opinion).
+   and checks it works (ground truth, not an opinion). 8/8 modules pass.
 2. **Rubric judge** — `python tools/llm_judge.py` runs each module's demo
    script and checks the actual prompt/output of each exercise against a
    `rubric.yaml` next to it (e.g. "did the few-shot run actually use the
@@ -100,6 +111,10 @@ Every module passes a five-layer, near-zero-cost review gate before it's "done":
    a free local Ollama model (or `--haiku` for a few cents when regex truly
    can't capture it). Catches "the demo doesn't actually show the contrast it
    claims to" — the exact class of bug found and fixed in module 01.
+   26/26 checks pass across modules 00–07.
+
+**Designed, not yet run (need an Ollama review pass):**
+
 3. **Anchor fact-check** — concept claims verified against the cited source.
 4. **Local-model review** — a free, different-family model (via Ollama) reviews
    for accuracy/clarity (independence without a second paid API).
