@@ -1,0 +1,26 @@
+# rubric.yaml — "what good looks like" for hello_llm.py's exercise.
+# See modules/01-prompt-engineering/rubric.yaml for the check-type reference.
+
+exercises:
+  - id: temperature
+    description: >
+      Both temperatures must produce a single-sentence answer to the creative
+      prompt. The key lesson (temp=0 is repeatable, temp=1 varies across runs)
+      cannot be verified in a single run; these checks confirm both produced
+      well-formed output and the prompt was answered (mentions "cloud" or
+      touch-related sensory words).
+    checks:
+      - type: max_lines
+        target: with_output
+        max: 2
+      - type: regex
+        target: with_output
+        pattern: "(?i)(cloud|mist|damp|soft|weightless|cool)"
+        must_match: true
+      - type: max_lines
+        target: without_output
+        max: 2
+      - type: regex
+        target: without_output
+        pattern: "(?i)(cloud|mist|damp|soft|weightless|cool)"
+        must_match: true

@@ -1,0 +1,35 @@
+# rubric.yaml — "what good looks like" for rag_from_scratch.py.
+# See modules/01-prompt-engineering/rubric.yaml for the check-type reference.
+#
+# The Lumina X1 is a FICTIONAL product, so Claude cannot know its specs from
+# training alone. WITHOUT RAG the model must NOT state the correct figures;
+# WITH RAG it MUST (the retrieved chunks contain them).
+
+exercises:
+  - id: rag_contrast_1
+    description: >
+      Eco-mode range question. WITHOUT RAG: model must not state "95" (the
+      correct range). WITH RAG: model must state 95 (from retrieved context).
+    checks:
+      - type: regex
+        target: without_output
+        pattern: "\\b95\\b"
+        must_match: false
+      - type: regex
+        target: with_output
+        pattern: "\\b95\\b"
+        must_match: true
+
+  - id: rag_contrast_2
+    description: >
+      Price and warranty question. WITHOUT RAG: model must not state 2,480
+      (the correct price). WITH RAG: model must state the price.
+    checks:
+      - type: regex
+        target: without_output
+        pattern: "2[,]?480"
+        must_match: false
+      - type: regex
+        target: with_output
+        pattern: "2[,]?480"
+        must_match: true

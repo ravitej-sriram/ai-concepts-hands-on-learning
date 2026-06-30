@@ -1,0 +1,14 @@
+# rubric.yaml — "what good looks like" for advanced_rag.py.
+# See modules/01-prompt-engineering/rubric.yaml for the check-type reference.
+
+exercises:
+  - id: hybrid_vs_naive
+    description: >
+      Hybrid+rerank must find the correct answer chunk in at least 3 of the 4
+      eval questions (naive vector typically gets 2-3; hybrid should match or
+      beat it). Final score line must show hybrid+rerank ≥ 3/4.
+    checks:
+      - type: regex
+        target: final_score
+        pattern: "hybrid\\+rerank: [34]/4"
+        must_match: true

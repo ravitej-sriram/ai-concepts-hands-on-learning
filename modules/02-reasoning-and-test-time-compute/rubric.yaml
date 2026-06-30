@@ -1,0 +1,19 @@
+# rubric.yaml — "what good looks like" for thinking_vs_fast.py's exercise.
+# See modules/01-prompt-engineering/rubric.yaml for the check-type reference.
+
+exercises:
+  - id: test_time_compute
+    description: >
+      Extended thinking (WITH) must reach the correct answer (29) by actually
+      accounting for the day-5 wind twist; the gut-instinct FAST answer isn't
+      held to a correctness bar (it's allowed to also get 29 — the lesson is
+      about WHY thinking mode is reliable, not that fast mode must fail).
+    checks:
+      - type: regex
+        target: with_output
+        pattern: "FINAL:\\s*29"
+        must_match: true
+      - type: regex
+        target: with_output
+        pattern: "(?i)wind"
+        must_match: true

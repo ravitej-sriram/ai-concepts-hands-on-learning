@@ -1,0 +1,32 @@
+# rubric.yaml — "what good looks like" for context_and_memory.py.
+# See modules/01-prompt-engineering/rubric.yaml for the check-type reference.
+
+exercises:
+  - id: no_memory
+    description: >
+      Call 1 acknowledges receiving Sam's name/color. Call 2 (separate call,
+      no history) must admit it doesn't know the name — proving no memory
+      exists between API calls.
+    checks:
+      - type: regex
+        target: first_reply
+        pattern: "(?i)(sam|teal)"
+        must_match: true
+      - type: regex
+        target: forgot_reply
+        pattern: "(?i)(don't|cannot|no |not sure|don't have|haven't|unknown|previous)"
+        must_match: true
+
+  - id: memory_via_history
+    description: >
+      When the earlier turn is re-sent in the messages list, the model must
+      correctly recall Sam's name and teal as the favorite color.
+    checks:
+      - type: regex
+        target: remembered_reply
+        pattern: "(?i)sam"
+        must_match: true
+      - type: regex
+        target: remembered_reply
+        pattern: "(?i)teal"
+        must_match: true

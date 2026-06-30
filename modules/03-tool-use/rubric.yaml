@@ -1,0 +1,18 @@
+# rubric.yaml — "what good looks like" for tool_use.py's exercise.
+# See modules/01-prompt-engineering/rubric.yaml for the check-type reference.
+
+exercises:
+  - id: tool_use_contrast
+    description: >
+      WITHOUT tools: model must admit it can't answer (doesn't know the catalog
+      prices). WITH tools: model must reach the correct total $30.75 by calling
+      get_price and calculator.
+    checks:
+      - type: regex
+        target: without_output
+        pattern: "(?i)(don't have|no information|don't know|cannot|can't|don't have access|prices|provide)"
+        must_match: true
+      - type: regex
+        target: with_output
+        pattern: "30\\.75"
+        must_match: true

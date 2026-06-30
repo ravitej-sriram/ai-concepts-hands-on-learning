@@ -1,0 +1,18 @@
+# rubric.yaml — "what good looks like" for embeddings_and_search.py.
+# See modules/01-prompt-engineering/rubric.yaml for the check-type reference.
+
+exercises:
+  - id: semantic_vs_keyword
+    description: >
+      Keyword search must score 0 for every document — 'eat', 'stay', 'healthy'
+      appear verbatim in none of them, so all keyword scores must be 0.000.
+      Semantic search must rank a diet or exercise document first.
+    checks:
+      - type: regex
+        target: keyword_results
+        pattern: "0\\.000"
+        must_match: true
+      - type: regex
+        target: semantic_top
+        pattern: "(?i)(diet|balanced|exercise|cardiovascular|fruits)"
+        must_match: true

@@ -1,0 +1,22 @@
+# ──────────────────────────────────────────────────────────────────────────
+# Shared dependencies for the whole course. One venv, one install.
+# Install with:  pip install -r requirements.txt
+# (See SETUP.md for the full first-time setup.)
+# ──────────────────────────────────────────────────────────────────────────
+
+# --- Core: talking to Claude (used from module 00 onward) ---
+anthropic>=0.40.0      # Official Anthropic SDK for the Claude API
+python-dotenv>=1.0.0   # Loads your API key from a local .env file
+requests>=2.31.0       # Simple HTTP — used to call local Ollama models
+pyyaml>=6.0            # Reads each module's rubric.yaml for tools/llm_judge.py
+
+# --- Retrieval / RAG (Track 1, modules 04–07) ---
+numpy>=1.26.0          # Vector math we do "by hand" to learn the mechanics
+
+# NOTE: Heavier, module-specific tools are intentionally NOT listed here so this
+# base install stays small and fast, and so a hiccup with one big library can't
+# block the whole course. Each of these is installed *inside the module that
+# needs it* (and each offers a free Google Colab fallback):
+#   • chromadb            — real local vector DB        (module 05, RAG)
+#   • torch + transformers, peft — fine-tuning           (modules 12–13)
+#   • pillow / audio libs — multimodal                   (module 15)

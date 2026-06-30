@@ -1,0 +1,68 @@
+# rubric.yaml — defines "what good looks like" for each exercise in
+# prompting_techniques.py, so tools/llm_judge.py can check the actual output
+# of a live run against it instead of a human eyeballing the terminal.
+#
+# Each check is either:
+#   - type: regex      → fast, free, deterministic. Prefer this whenever the
+#                         pass/fail condition can be stated as a pattern.
+#   - type: max_lines   → counts non-empty lines (for "must be terse" checks).
+#   - type: judge        → asks an LLM a yes/no question, for anything regex
+#                         can't capture. model: ollama (default, free) or
+#                         haiku (small real cost, use only for genuinely
+#                         subjective judgment calls).
+#
+# target is one of: without_output, with_output, without_prompt, with_prompt.
+
+exercises:
+  - id: specific_instructions
+    description: >
+      Specific instructions (audience + length + topic) should produce a
+      short, on-topic reply about tail-wagging; the vague prompt should not
+      be artificially constrained.
+    checks:
+      - type: regex
+        target: with_output
+        pattern: "(?i)wag"
+        must_match: true
+      - type: max_lines
+        target: with_output
+        max: 3
+
+  - id: system_prompt
+    description: >
+      The system prompt demands at most 3 bullet points and forbids code —
+      the WITH run must obey both; the WITHOUT run is unconstrained so no
+      check is placed on it.
+    checks:
+      - type: regex
+        target: with_output
+        pattern: "```"
+        must_match: false
+      - type: max_lines
+        target: with_output
+        max: 3
+
+  - id: few_shot_convention
+    description: >
+      Few-shot must force the bare "+1/-1/0" convention shown in its
+      examples; zero-shot has no way to know that convention and must NOT
+      happen to produce it (otherwise the contrast doesn't land).
+    checks:
+      - type: regex
+        target: with_output
+        pattern: "^[+-]?1$|^0$"
+        must_match: true
+      - type: regex
+        target: without_output
+        pattern: "^[+-]?1$|^0$"
+        must_match: false
+
+  - id: chain_of_thought
+    description: >
+      The step-by-step run must show its algebra (an equation with x), not
+      just state a final number — that's the entire point of the exercise.
+    checks:
+      - type: regex
+        target: with_output
+        pattern: "(?i)(let|2x|x ?=)"
+        must_match: true
